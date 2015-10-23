@@ -1,6 +1,7 @@
 package edu.elon.cs.gamealarm;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,7 +24,7 @@ public class MainActivity extends Activity {
 
         listView = (ListView) findViewById(R.id.alarmList);
 
-        List<Alarm> alarmArrayList = new ArrayList<Alarm>();
+        final List<Alarm> alarmArrayList = new ArrayList<Alarm>();
 
         //TODO: Remove - just for testing
         alarmArrayList.add(new Alarm(2, 4, 3, true));
@@ -36,6 +37,25 @@ public class MainActivity extends Activity {
 
         listView.setAdapter(arrayAdapter);
 
+        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Alarm current = alarmArrayList.get(position);
+                if (current.isOn()) {
+                    current.setOn(false);
+                }
+                else
+                    current.setOn(true);
+            }
+        };
+
+        AdapterView.OnItemLongClickListener itemLongClickListener = new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+
+            }
+        };
 
     }
 
