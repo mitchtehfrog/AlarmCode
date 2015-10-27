@@ -30,21 +30,21 @@ public class MainActivity extends Activity {
         alarmArrayList = new ArrayList<Alarm>();
 
         //TODO: Remove - just for testing
-        alarmArrayList.add(new Alarm(2, 4, 3, true));
-        alarmArrayList.add(new Alarm(6, 12, 16, true));
-        alarmArrayList.add(new Alarm(4, 3, 45, false));
-        alarmArrayList.add(new Alarm(4, 3, 45, false));
-        alarmArrayList.add(new Alarm(4, 3, 45, false));
-        alarmArrayList.add(new Alarm(4, 3, 45, false));
-        alarmArrayList.add(new Alarm(4, 3, 45, false));
-        alarmArrayList.add(new Alarm(4, 3, 45, false));
-        alarmArrayList.add(new Alarm(4, 3, 45, false));
-        alarmArrayList.add(new Alarm(4, 3, 45, false));
-        alarmArrayList.add(new Alarm(4, 3, 45, false));
-        alarmArrayList.add(new Alarm(4, 3, 45, false));
-        alarmArrayList.add(new Alarm(4, 3, 45, false));
-        alarmArrayList.add(new Alarm(4, 3, 45, false));
-        alarmArrayList.add(new Alarm(4, 3, 45, false));
+//        alarmArrayList.add(new Alarm(2, 4, 3, true));
+//        alarmArrayList.add(new Alarm(6, 12, 16, true));
+//        alarmArrayList.add(new Alarm(4, 3, 45, false));
+//        alarmArrayList.add(new Alarm(4, 3, 45, false));
+//        alarmArrayList.add(new Alarm(4, 3, 45, false));
+//        alarmArrayList.add(new Alarm(4, 3, 45, false));
+//        alarmArrayList.add(new Alarm(4, 3, 45, false));
+//        alarmArrayList.add(new Alarm(4, 3, 45, false));
+//        alarmArrayList.add(new Alarm(4, 3, 45, false));
+//        alarmArrayList.add(new Alarm(4, 3, 45, false));
+//        alarmArrayList.add(new Alarm(4, 3, 45, false));
+//        alarmArrayList.add(new Alarm(4, 3, 45, false));
+//        alarmArrayList.add(new Alarm(4, 3, 45, false));
+//        alarmArrayList.add(new Alarm(4, 3, 45, false));
+//        alarmArrayList.add(new Alarm(4, 3, 45, false));
 
 
         ArrayAdapter<Alarm> arrayAdapter = new ArrayAdapter<Alarm>(this,
