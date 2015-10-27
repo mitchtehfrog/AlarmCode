@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(itemClickListener);
-        listView.setOnLongClickListener(itemLongClickListener);
+        listView.setOnItemLongClickListener(itemLongClickListener);
 
     }
 
