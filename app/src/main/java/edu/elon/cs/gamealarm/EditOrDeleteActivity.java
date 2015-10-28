@@ -13,11 +13,12 @@ public class EditOrDeleteActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_or_delete);
+        Intent intent = getIntent();
     }
 
     public void onEditClick(){
-        //Intent intent = new Intent(this, AddAlarmActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, AddAlarmActivity.class);
+        startActivity(intent);
     }
 
     public void onDeleteClick(){

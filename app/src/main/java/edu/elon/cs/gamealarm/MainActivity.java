@@ -1,6 +1,7 @@
 package edu.elon.cs.gamealarm;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +20,7 @@ public class MainActivity extends Activity {
     private ListView listView;
     protected static List<Alarm> alarmArrayList;
     protected static int relevantPosition;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,8 @@ public class MainActivity extends Activity {
 //        alarmArrayList.add(new Alarm(4, 3, 45, false));
 //        alarmArrayList.add(new Alarm(4, 3, 45, false));
 //        alarmArrayList.add(new Alarm(4, 3, 45, false));
+
+        //TODO: code something that populates the array list with a file
 
 
         ArrayAdapter<Alarm> arrayAdapter = new ArrayAdapter<Alarm>(this,

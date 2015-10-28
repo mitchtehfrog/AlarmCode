@@ -1,81 +1,38 @@
 package edu.elon.cs.gamealarm;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.os.PowerManager;
+
 /**
  * Created by Michael on 10/22/2015.
  */
-public class Alarm {
+public class Alarm extends BroadcastReceiver{
 
-    private int day;
-    private int hours;
-    private int minutes;
-    private boolean am;
-    private boolean on;
+    private boolean isOn = false;
 
-    public Alarm (int day, int hours, int minutes, boolean am) {
-        this.day = day;
-        this.hours = hours;
-        this.minutes = minutes;
-        this.am = am;
-        on = true;
+    public void onReceive(Context context, Intent intent){
+        PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK ,"");
+        wakeLock.acquire();
     }
 
-    public int getDay () {
-        return day;
+    public void setAlarm(Context context){
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, Alarm.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        //alarmManager.setAlarmClock(AlarmManager.AlarmClockInfo, pendingIntent );
     }
 
-    public void setDay(int day) {
-        this.day = day;
+    public void setOn(boolean isOn){
+        this.isOn = isOn;
     }
 
-    public int getHours () {
-        return hours;
+    public boolean isOn(){
+        return isOn;
     }
 
-    public void setHours(int hours) {
-        this.hours = hours;
-    }
-
-    public int getMinutes () {
-        return minutes;
-    }
-
-    public void setMinutes (int minutes) {
-        this.minutes = minutes;
-    }
-
-    public boolean isAm () {
-        return am;
-    }
-
-    public void setAm(boolean am) {
-        this.am = am;
-    }
-
-    public boolean isOn () {
-        return on;
-    }
-
-    public void setOn (boolean on){
-        this.on = on;
-    }
-
-    @Override
-    public String toString() {
-        String alarm = hours + ":";
-
-        if (minutes < 10){
-            alarm += "0";
-        }
-
-        alarm += minutes + " ";
-
-        if (am){
-            alarm += "am";
-        }
-        else{
-            alarm += "PM";
-        }
-
-        return alarm;
-    }
 }
