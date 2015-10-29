@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/minutespinner"
-            android:layout_above="@+id/hourspinner"
+            android:layout_below="@+id/hourspinner"
             android:layout_alignParentStart="true" />
 
     <Button
