@@ -16,10 +16,15 @@ public class Alarm extends BroadcastReceiver{
     private int hours, minutes;
     private boolean isOn = false;
 
-    public Alarm(int hours, int minutes){
+    public Alarm(Context context, long timeFromNow, int hours,  int minutes){
         this.hours = hours;
         this.minutes = minutes;
-    }
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, Alarm.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        AlarmManager.AlarmClockInfo info = new AlarmManager.AlarmClockInfo(System.currentTimeMillis() + timeFromNow, pendingIntent);
+        alarmManager.setAlarmClock(info, pendingIntent);
+}
 
     public void onReceive(Context context, Intent intent){
         PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
@@ -32,13 +37,9 @@ public class Alarm extends BroadcastReceiver{
         wakeLock.release();
     }
 
-    public void setAlarm(Context context, long timeFromNow){
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, Alarm.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-        AlarmManager.AlarmClockInfo info = new AlarmManager.AlarmClockInfo(System.currentTimeMillis() + timeFromNow, pendingIntent);
-        alarmManager.setAlarmClock(info, pendingIntent);
-    }
+   // public void set(Context context, long timeFromNow){
+
+    //}
 
     public void setOn(boolean isOn){
         this.isOn = isOn;

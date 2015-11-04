@@ -2,6 +2,7 @@ package edu.elon.cs.gamealarm;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,8 +12,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends Activity {
@@ -70,13 +73,20 @@ public class MainActivity extends Activity {
 
         listView.setOnItemClickListener(itemClickListener);
         listView.setOnItemLongClickListener(itemLongClickListener);
-        if(getIntent() != null){
+        if(getIntent() != null){ //from onSaveClick
             Intent intent = getIntent();
             int hours = intent.getIntExtra("hours", 0);
             int minutes = intent.getIntExtra("minutes", 0);
-            Alarm alarm = new Alarm(hours, minutes);
+            Context context = getApplicationContext();
+            Calendar c = Calendar.getInstance();
+            int nowHours = c.get(Calendar.HOUR_OF_DAY);
+            int nowMinutes = c.get(Calendar.MINUTE);
+            int diffHours = Math.abs(nowHours - hours);
+            int diffMinutes = Math.abs(nowMinutes - minutes);
+            long timeFromNow = (diffHours * 60 * 60 * 1000) + (minutes * 60 * 1000);
+            Alarm alarm = new Alarm(context, timeFromNow, hours, minutes);
             alarmArrayList.add(alarm);
-
+            Toast.makeText(context, "Alarm set for"+ " " + diffHours + " hours and " + diffMinutes + " minutes from now",Toast.LENGTH_LONG).show();
                     //add logic for re-ordering the list
         }
 
