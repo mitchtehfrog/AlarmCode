@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
+import android.widget.Toast;
 
 /**
  * Created by Michael on 10/22/2015.
@@ -24,6 +25,11 @@ public class Alarm extends BroadcastReceiver{
         PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK ,"");
         wakeLock.acquire();
+
+        // Put here YOUR code.
+        Toast.makeText(context, "Alarm !!!!!!!!!!", Toast.LENGTH_LONG).show(); // For example
+
+        wakeLock.release();
     }
 
     public void setAlarm(Context context, long timeFromNow){
