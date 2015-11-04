@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.BaseAdapter;
 
 public class EditOrDeleteActivity extends Activity {
@@ -16,12 +17,12 @@ public class EditOrDeleteActivity extends Activity {
         Intent intent = getIntent();
     }
 
-    public void onEditClick(){
+    public void onEditClick(View view){
         Intent intent = new Intent(this, AddAlarmActivity.class);
         startActivity(intent);
     }
 
-    public void onDeleteClick(){
+    public void onDeleteClick(View view){
         MainActivity.alarmArrayList.remove(MainActivity.relevantPosition);
         finish();
     }

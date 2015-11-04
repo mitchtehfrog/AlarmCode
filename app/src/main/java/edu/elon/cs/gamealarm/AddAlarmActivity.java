@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -19,19 +20,24 @@ public class AddAlarmActivity extends Activity {
     private AlarmManager alarmManager;
     private Spinner hourSpinner;
     private Spinner minuteSpinner;
-    private Integer[] hours = new Integer[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23};
-    private Integer[] minutes = new Integer[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,
-            18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,
-            47,48,49,50,51,52,53,54,55,56,57,58,59};
-    private ArrayAdapter<Integer> hourAdapter = new ArrayAdapter<Integer>(this,
-            android.R.layout.simple_spinner_item, hours);
-    private ArrayAdapter<Integer> minuteAdapter = new ArrayAdapter<Integer>(this,
-            android.R.layout.simple_spinner_item, minutes);
+    private Integer[] hours;
+    private Integer[] minutes;
+   private ArrayAdapter<Integer> hourAdapter;
+    private ArrayAdapter<Integer> minuteAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_alarm);
+        hours = new Integer[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24};
+        minutes = new Integer[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,
+                18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,
+                47,48,49,50,51,52,53,54,55,56,57,58,59,60};
+       hourAdapter = new ArrayAdapter<Integer>(this,
+                android.R.layout.simple_spinner_item, hours);
+        minuteAdapter  = new ArrayAdapter<Integer>(this,
+                android.R.layout.simple_spinner_item, minutes);
+        calendar = Calendar.getInstance();
         hourSpinner = (Spinner) findViewById(R.id.hourspinner);
         minuteSpinner = (Spinner) findViewById(R.id.minutespinner);
         hourSpinner.setAdapter(hourAdapter);
@@ -41,7 +47,7 @@ public class AddAlarmActivity extends Activity {
         getIntent(); //not sure if this is needed..
     }
 
-    public void onSaveClick(){
+    public void onSaveClick(View view){
         Intent intent = new Intent(this, MainActivity.class);
         //TODO: Alternatively, we could put something here which appends to a file. not sure how yet
         intent.putExtra("hours", (Integer) hourSpinner.getSelectedItem());

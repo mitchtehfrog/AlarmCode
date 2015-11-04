@@ -32,6 +32,9 @@ public class MainActivity extends Activity {
         alarmArrayList = new ArrayList<Alarm>();
 
         //TODO: Remove - just for testing
+
+        //alarmArrayList.add(new Alarm (2,30));
+
 //        alarmArrayList.add(new Alarm(2, 4, 3, true));
 //        alarmArrayList.add(new Alarm(6, 12, 16, true));
 //        alarmArrayList.add(new Alarm(4, 3, 45, false));
@@ -55,10 +58,27 @@ public class MainActivity extends Activity {
                 android.R.layout.simple_list_item_1,
                 alarmArrayList);
 
+        //runOnUiThread(new Runnable() {
+           // public void run() {
+              //  arrayAdapter.notifyDataSetChanged();
+           // }
+       // });                                                   This was here to try to debug
+
+
+
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(itemClickListener);
         listView.setOnItemLongClickListener(itemLongClickListener);
+        if(getIntent() != null){
+            Intent intent = getIntent();
+            int hours = intent.getIntExtra("hours", 0);
+            int minutes = intent.getIntExtra("minutes", 0);
+            Alarm alarm = new Alarm(hours, minutes);
+            alarmArrayList.add(alarm);
+
+                    //add logic for re-ordering the list
+        }
 
     }
 
@@ -91,7 +111,8 @@ public class MainActivity extends Activity {
     }
 
     public void onAddClick(View view){
-        //Intent intent = new Intent (this, AddAlarmActivity.class);
+        Intent intent = new Intent (this, AddAlarmActivity.class);
+        startActivity(intent);
     }
 }
 
