@@ -20,11 +20,12 @@ public class Alarm extends BroadcastReceiver{
         wakeLock.acquire();
     }
 
-    public void setAlarm(Context context){
+    public void setAlarm(Context context, long timeFromNow){
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, Alarm.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-        //alarmManager.setAlarmClock(AlarmManager.AlarmClockInfo, pendingIntent );
+        AlarmManager.AlarmClockInfo info = new AlarmManager.AlarmClockInfo(System.currentTimeMillis() + timeFromNow, pendingIntent);
+        alarmManager.setAlarmClock(info, pendingIntent);
     }
 
     public void setOn(boolean isOn){
